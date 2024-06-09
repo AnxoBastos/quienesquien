@@ -41,6 +41,9 @@ La programación lógica destaca por su capacidad para resolver problemas median
 
 ## 6. Base de datos Prolog
 
+Para la base de datos del "¿Quién es quién?" he decidido utilizar Prolog, ya que este nos permite representar a los personajes y sus características de manera facil y rapida.
+
+En este caso crearemos una relación mediante hechos llamada "personaje" la cual contara con dos argumentos, el primero será el nombre del personaje y el segundo una lista con todas sus características. A parte de definir estas relaciones mediante hechos se han definido multiples relaciones mediante reglas para conseguir ciertos parametros de manera facil, algunos ejemplos pueden ser "obtener_caracteristicas" para conseguir todas las caracteristicas de un personaje o "obtener_nombres" para conseguir todos los nombres de los personajes entre otras.
 
 ## Webgrafía y Bibliografía
 
