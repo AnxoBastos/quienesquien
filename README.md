@@ -28,6 +28,10 @@ Contorno de tareas | Completamente/ Parcialmente Observable | Agentes | Determin
 
 ## 3. Algoritmo
 
+El algoritmo aplicado para la toma de decisiones por parte del ordenador es un algoritmo de optimización basado en entropía. La entropía es una medida que define la incertidumbre en un conjunto de datos, en el contexto de este algoritmo, mide cuán desordenado o incierto es el conjunto de personajes dado. 
+
+La entropía se calcula para un grupo de personajes basado en una característica específica. Cuanto mayor es la entropía, mayor es la incertidumbre.
+Para calcular la ganancia de información se mide la reducción de la entropía cuando se divide el conjunto por una característica específica.
 
 ## 4. Estrutura del agente
 
