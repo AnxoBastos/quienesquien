@@ -50,8 +50,11 @@ Para la base de datos del "¿Quién es quién?" he decidido utilizar Prolog, ya 
 En este caso crearemos una relación mediante hechos llamada "personaje" la cual contara con dos argumentos, el primero será el nombre del personaje y el segundo una lista con todas sus características. A parte de definir estas relaciones mediante hechos se han definido multiples relaciones mediante reglas para conseguir ciertos parametros de manera facil, algunos ejemplos pueden ser "obtener_caracteristicas" para conseguir todas las caracteristicas de un personaje o "obtener_nombres" para conseguir todos los nombres de los personajes entre otras.
 
 ## Webgrafía y Bibliografía
-
+- https://medium.com/geekculture/step-by-step-decision-tree-id3-algorithm-from-scratch-in-python-no-fancy-library-4822bbfdd88f
+- https://github.com/zeon-X/ID3-simple-decision-tree-learning-algorithm
+- https://www.elsevier.es/en-revista-revista-colombiana-ortopedia-traumatologia-380-articulo-la-conjetura-poincare-entropia-la-S0120884520300250#:~:text=La%20entrop%C3%ADa%20es%20la%20estad%C3%ADstica,priori%20aparenta%20caos%20o%20desorden.
 - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7946196/
+- https://chalkdustmagazine.com/blog/cracking-guess-board-game/
 
 - Sharan, Kishori. Beginning Java 8 Fundamentals: Language Syntax, Arrays, Data Types, Objects, and Regular Expressions. Apress, 2014.
 - Hurbans, Rishal. Grokking Artificial Intelligence Algorithms. Manning Publications Co, 2020.
