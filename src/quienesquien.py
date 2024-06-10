@@ -102,14 +102,14 @@ def main():
     while status != 'finished':
         # Start of game loop, declaration of necessary variables player/computer character, player/computer board, round and first player selection
         if status == 'starting':
-            player_character = input(f"Seleccióna un personaje entre los diponibles -> {character_names}\n(Si desea obtener las caracteristicas de algun personaje escriba el caracter \"¡\" delante del nombre.) \n").strip().lower()
+            player_character = input(f"Selecciona un personaje entre los diponibles -> {character_names}\n(Si desea obtener las caracteristicas de algun personaje escriba el caracter \"¡\" delante del nombre.) \n").strip().lower()
 
             if '¡' in player_character and player_character.replace('¡', '') in character_names:
                 chars = list(prolog.query(f"obtener_caracteristicas({player_character.replace('¡', '')}, Caracteristicas)."))
                 print(chars)
                 continue
             elif player_character not in character_names:
-                print("El personaje selecciónado no existe.")
+                print("El personaje seleccionado no existe.")
                 continue
 
             computer_character = random.choice(character_names)
@@ -131,7 +131,7 @@ def main():
         if status == 'playing':
             if turn == 'player':
                 print_characters(prolog, player_board)
-                selection = input('Seleccióna una característica o un personaje entre los disponibles\n').replace(' ', '_')
+                selection = input('Selecciona una caracteristica o un personaje entre los disponibles\n').replace(' ', '_')
                 if round == 1 and (selection == 'hombre' or selection == 'mujer'):
                     print('¡La primera pregunta no puede ser si el personaje es hombre o mujer!')
 
@@ -148,6 +148,7 @@ def main():
                 elif selection in character_names:
                     if selection != computer_character:
                         print(f"El personaje NO es --> {selection}")
+                        player_board.remove(selection)
                         round += 1
                         turn = 'computer'
                     else:
@@ -159,6 +160,7 @@ def main():
                                 status = 'starting'
                             elif selection == 'no':
                                 status = 'finished'
+
             if turn == 'computer':
                 if len(characters_dict) == 1:
                     name = next(iter(characters_dict))
@@ -175,7 +177,7 @@ def main():
                                 status = 'finished'
                 else:
                     best_characteristic = select_best_characteristic(characters_dict, unique_characteristics)
-                    answer = input(f"¿El personaje tiene {best_characteristic}? (si|no)\n").strip().lower() == "si"
+                    answer = input(f"¿El personaje tiene la caracteristica --> {best_characteristic}? (si|no)\n").strip().lower() == "si"
                     characters_dict = filter_characters(characters_dict, best_characteristic, answer)
                     round += 1
                     turn = 'player'
