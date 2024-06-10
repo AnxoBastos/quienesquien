@@ -2,6 +2,7 @@ import random
 from pyswip import Prolog
 import math
 
+# Print the board for Player Side
 def print_characters(prolog, board):
     i = 1
     print_board = '|'
@@ -15,6 +16,7 @@ def print_characters(prolog, board):
         print_board += ' |\n|'
     print(print_board[:-2])
 
+# Return the list of possible characters for Player Side
 def check_characteristic(prolog, board, characteristic, status):
     new_board = []
     for name in board:
@@ -28,6 +30,7 @@ def calculate_entropy(group):
     if total == 0:
         return 0
 
+    # Count the frequency of each characteristic
     frequency = {}
     for element in group:
         if element in frequency:
@@ -35,7 +38,10 @@ def calculate_entropy(group):
         else:
             frequency[element] = 1
         
+    # Calculate probabilities
     probabilities = [freq / total for freq in frequency.values()]
+
+    # Calculate entropy
     entropy = -sum(p * math.log2(p) for p in probabilities)
     return entropy
 
@@ -44,6 +50,7 @@ def information_gain(character, characteristic):
     if total == 0:
         return 0
 
+    # Split characters based on characteristic
     group_with_characteristic = []
     group_without_characteristic = []
     for name, characteristics in character.items():
@@ -52,14 +59,17 @@ def information_gain(character, characteristic):
         else:
             group_without_characteristic.append(name)
 
+    # Calculate the entropy of each group
     entropy_before = calculate_entropy(character.keys())
     entropy_after = (
         (len(group_with_characteristic) / total) * calculate_entropy(group_with_characteristic) +
         (len(group_without_characteristic) / total) * calculate_entropy(group_without_characteristic)
     )
 
+    # Calculate information gain
     return entropy_before - entropy_after
 
+# Select the characteristic that provides the greatest information gain.
 def select_best_characteristic(characters, unique_characteristics):
     best_characteristic = None
     best_gain = -1
@@ -72,6 +82,7 @@ def select_best_characteristic(characters, unique_characteristics):
 
     return best_characteristic
 
+# Filter of characters based on the presence or absence of the characteristic.
 def filter_characters(characters, characteristic, value):
     if value:
         return {name: chars for name, chars in characters.items() if characteristic in chars}
@@ -79,13 +90,17 @@ def filter_characters(characters, characteristic, value):
         return {name: chars for name, chars in characters.items() if characteristic not in chars}
 
 def main():
+    # Connection to Prolog database
     prolog = Prolog()
     prolog.consult('quienesquien/src/quienesquien.pl')
+
+    # Get list of names and unique characteristics
     character_names = list(prolog.query("obtener_nombres(Nombres)."))[0]['Nombres']
     unique_characteristics = list(prolog.query("caracteristicas_unicas(CaracteristicasUnicas)."))[0]['CaracteristicasUnicas']
     
     status = 'starting'
     while status != 'finished':
+        # Start of game loop, declaration of necessary variables player/computer character, player/computer board, round and first player selection
         if status == 'starting':
             player_character = input(f"Seleccióna un personaje entre los diponibles -> {character_names}\n(Si desea obtener las caracteristicas de algun personaje escriba el caracter \"¡\" delante del nombre.) \n").strip().lower()
 
@@ -112,6 +127,7 @@ def main():
             if turn == 'computer': print('Empieza a preguntar el ordenador')
             else: print('Empiezas a preguntar tu')
 
+        # Main game loop with player/computer selection and win condition
         if status == 'playing':
             if turn == 'player':
                 print_characters(prolog, player_board)
@@ -150,7 +166,7 @@ def main():
                     if win_condition:
                         print("¡Ha acertado el ordenador!")
                     else:
-                        print("ERROR: No se pudo identificar un único personaje.")
+                        print("ERROR: No se pudo identificar al personaje. (Puede ser que hayas respondido a una pregunta mal...)")
                     while selection != 'si' and selection != 'no':
                             selection = input('¿Deseas empezar una nueva partida? (si|no)\n').strip().lower()
                             if selection == 'si':
