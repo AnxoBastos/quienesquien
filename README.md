@@ -33,6 +33,8 @@ El algoritmo aplicado para la toma de decisiones por parte del ordenador es un a
 La entropía se calcula para un grupo de personajes basado en una característica específica. Cuanto mayor es la entropía, mayor es la incertidumbre.
 Para calcular la ganancia de información se mide la reducción de la entropía cuando se divide el conjunto por una característica específica.
 
+Actualmente el algoritmo solo pregunta por un personaje cuando esta 100% seguro de que es el correcto pero con unas simples modificaciones podría conseguirse que el algoritmo intentara predecir un personaje si con las características ya preguntadas tuviera una alta propabilidad de acertar haciendolo asi jugar de manera mas codiciosa.
+
 ## 4. Estrutura del agente
 
 El modelo elegido es el de agente reactivo basado en modelos. Este tipo de agente mantiene un modelo interno del mundo (en este caso, las posibles características de los personajes restantes) y toma decisiones basadas en este modelo.
