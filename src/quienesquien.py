@@ -1,8 +1,6 @@
-import pytest
 import random
 from pyswip import Prolog
 import math
-from collections import Counter, defaultdict
 
 def print_characters(prolog, board):
     i = 1
@@ -104,12 +102,15 @@ def main():
             characters_dict = {}
             for char in character_names:
                 characters_dict[char] = list(prolog.query(f"obtener_caracteristicas({char}, Caracteristicas)."))[0]['Caracteristicas']
-            
             player_board = character_names
+
             status = 'playing'
             round = 1
-            turn = 'player'
+
             print('¡Recuerda que la primera pregunta no puede ser si el personaje es hombre o mujer!')
+            turn = random.choice(('player', 'computer'))
+            if turn == 'computer': print('Empieza a preguntar el ordenador')
+            else: print('Empiezas a preguntar tu')
 
         if status == 'playing':
             if turn == 'player':
@@ -145,7 +146,7 @@ def main():
             if turn == 'computer':
                 if len(characters_dict) == 1:
                     name = next(iter(characters_dict))
-                    win_condition = input(f"¿El personaje es {name}? (si|no)").strip().lower() == "si"
+                    win_condition = input(f"¿El personaje es {name}? (si|no)\n").strip().lower() == "si"
                     if win_condition:
                         print("¡Ha acertado el ordenador!")
                     else:
