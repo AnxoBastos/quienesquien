@@ -51,6 +51,15 @@ Para la base de datos del "¿Quién es quién?" he decidido utilizar Prolog, ya 
 
 En este caso crearemos una relación mediante hechos llamada "personaje" la cual contara con dos argumentos, el primero será el nombre del personaje y el segundo una lista con todas sus características. A parte de definir estas relaciones mediante hechos se han definido multiples relaciones mediante reglas para conseguir ciertos parametros de manera facil, algunos ejemplos pueden ser "obtener_caracteristicas" para conseguir todas las caracteristicas de un personaje o "obtener_nombres" para conseguir todos los nombres de los personajes entre otras.
 
+## Requisitos y uso
+
+(El proyecto se ha realizado con estas versiones pero es posible que con otras funcione de manera correcta)
+- Python 3.10.14
+- Pyswip 0.2.11
+- SWI-Prolog 9.2.5
+
+Para jugar a "¿Quién es Quién?", solo tendrás que ejecutar el código del archivo "quienesquien.py". Después de ejecutar el código, se te pedirá que selecciones un personaje entre los disponibles. Si quieres saber las características de alguno en concreto, podrás hacerlo añadiendo el carácter "¡" delante del nombre (por ejemplo, ¡max). Después de elegir un personaje, se seleccionará aleatoriamente quién empezará a preguntar. A partir de aquí, la dinámica es la del juego original: la máquina realizará preguntas que tendrás que responder con "sí" o "no" y viceversa. Cuando uno de los dos (jugador o máquina) acierte el personaje, se te dará la opción de jugar otra partida o finalizar.
+
 ## Webgrafía y Bibliografía
 - https://medium.com/geekculture/step-by-step-decision-tree-id3-algorithm-from-scratch-in-python-no-fancy-library-4822bbfdd88f
 - https://github.com/zeon-X/ID3-simple-decision-tree-learning-algorithm
